@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	GroupName = "management.cattle.io"
+	GroupName = "cloud.huawei.com"
 	Version   = "v3public"
 )
 

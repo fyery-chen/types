@@ -57,6 +57,7 @@ type Interface interface {
 	PipelineExecutionLogsGetter
 	SourceCodeRepositoriesGetter
 	ComposeConfigsGetter
+	BusinessQuotasGetter
 }
 
 type Client struct {
@@ -106,6 +107,7 @@ type Client struct {
 	pipelineExecutionLogControllers                    map[string]PipelineExecutionLogController
 	sourceCodeRepositoryControllers                    map[string]SourceCodeRepositoryController
 	composeConfigControllers                           map[string]ComposeConfigController
+	businessQuotaControllers                           map[string]BusinessQuotaController
 }
 
 func NewForConfig(config rest.Config) (Interface, error) {
@@ -164,6 +166,7 @@ func NewForConfig(config rest.Config) (Interface, error) {
 		pipelineExecutionLogControllers:                    map[string]PipelineExecutionLogController{},
 		sourceCodeRepositoryControllers:                    map[string]SourceCodeRepositoryController{},
 		composeConfigControllers:                           map[string]ComposeConfigController{},
+		businessQuotaControllers:                           map[string]BusinessQuotaController{},
 	}, nil
 }
 
@@ -719,6 +722,19 @@ type ComposeConfigsGetter interface {
 func (c *Client) ComposeConfigs(namespace string) ComposeConfigInterface {
 	objectClient := objectclient.NewObjectClient(namespace, c.restClient, &ComposeConfigResource, ComposeConfigGroupVersionKind, composeConfigFactory{})
 	return &composeConfigClient{
+		ns:           namespace,
+		client:       c,
+		objectClient: objectClient,
+	}
+}
+
+type BusinessQuotasGetter interface {
+	BusinessQuotas(namespace string) BusinessQuotaInterface
+}
+
+func (c *Client) BusinessQuotas(namespace string) BusinessQuotaInterface {
+	objectClient := objectclient.NewObjectClient(namespace, c.restClient, &BusinessQuotaResource, BusinessQuotaGroupVersionKind, businessQuotaFactory{})
+	return &businessQuotaClient{
 		ns:           namespace,
 		client:       c,
 		objectClient: objectClient,

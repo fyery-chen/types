@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	GroupName = "management.cattle.io"
+	GroupName = "cloud.huawei.com"
 	Version   = "v3"
 )
 
@@ -117,6 +117,8 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&SourceCodeRepositoryList{},
 		&ComposeConfig{},
 		&ComposeConfigList{},
+		&BusinessQuota{},
+		&BusinessQuotaList{},
 	)
 	return nil
 }

@@ -2,7 +2,7 @@ package user
 
 import (
 	"github.com/rancher/norman/types"
-	"github.com/rancher/types/apis/management.cattle.io/v3"
+	"github.com/rancher/types/apis/cloud.huawei.com/v3"
 )
 
 type Manager interface {

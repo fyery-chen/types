@@ -1,8 +1,8 @@
 package compose
 
 import (
+	managementClient "github.com/rancher/types/client/cloud/v3"
 	clusterClient "github.com/rancher/types/client/cluster/v3"
-	managementClient "github.com/rancher/types/client/management/v3"
 	projectClient "github.com/rancher/types/client/project/v3"
 )
 
@@ -49,6 +49,7 @@ type Config struct {
 	PipelineExecutionLogs                    map[string]managementClient.PipelineExecutionLog                    `json:"pipelineExecutionLogs,omitempty" yaml:"pipelineExecutionLogs,omitempty"`
 	SourceCodeRepositorys                    map[string]managementClient.SourceCodeRepository                    `json:"sourceCodeRepositories,omitempty" yaml:"sourceCodeRepositories,omitempty"`
 	ComposeConfigs                           map[string]managementClient.ComposeConfig                           `json:"composeConfigs,omitempty" yaml:"composeConfigs,omitempty"`
+	BusinessQuotas                           map[string]managementClient.BusinessQuota                           `json:"businessQuotas,omitempty" yaml:"businessQuotas,omitempty"`
 
 	// Cluster Client
 	Namespaces        map[string]clusterClient.Namespace        `json:"namespaces,omitempty" yaml:"namespaces,omitempty"`

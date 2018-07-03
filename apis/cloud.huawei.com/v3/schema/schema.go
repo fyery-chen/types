@@ -7,7 +7,7 @@ import (
 
 	"github.com/rancher/norman/types"
 	m "github.com/rancher/norman/types/mapper"
-	"github.com/rancher/types/apis/management.cattle.io/v3"
+	"github.com/rancher/types/apis/cloud.huawei.com/v3"
 	"github.com/rancher/types/factory"
 	"github.com/rancher/types/mapper"
 )
@@ -15,7 +15,7 @@ import (
 var (
 	Version = types.APIVersion{
 		Version: "v3",
-		Group:   "management.cattle.io",
+		Group:   "cloud.huawei.com",
 		Path:    "/v3",
 	}
 
@@ -35,11 +35,27 @@ var (
 		Init(rkeTypes).
 		Init(alertTypes).
 		Init(pipelineTypes).
-		Init(composeType)
+		Init(composeType).
+		Init(businessQuotaTypes)
 
 	TokenSchemas = factory.Schemas(&Version).
 			Init(tokens)
 )
+
+func businessQuotaTypes(schema *types.Schemas) *types.Schemas {
+	return schema.
+		AddMapperForType(&Version, v3.BusinessQuota{},
+			m.DisplayName{}).
+		MustImport(&Version, v3.BusinessQuota{}).
+		MustImportAndCustomize(&Version, v3.BusinessQuota{}, func(schema *types.Schema) {
+			schema.ResourceActions = map[string]types.Action{
+				"checkout": {
+					Input: "businessQuotaCheck",
+				},
+			}
+		}).
+		MustImport(&Version, v3.BusinessQuotaCheck{})
+}
 
 func rkeTypes(schemas *types.Schemas) *types.Schemas {
 	return schemas.AddMapperForType(&Version, v3.BaseService{}, m.Drop{Field: "image"})

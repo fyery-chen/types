@@ -4,7 +4,7 @@ var composeTemplate = `package compose
 
 import (
 	clusterClient "github.com/rancher/types/client/cluster/v3"
-	managementClient "github.com/rancher/types/client/management/v3"
+	managementClient "github.com/rancher/types/client/cloud/v3"
 	projectClient "github.com/rancher/types/client/project/v3"
 )
 

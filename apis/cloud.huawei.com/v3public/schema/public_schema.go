@@ -4,15 +4,15 @@ import (
 	"net/http"
 
 	"github.com/rancher/norman/types"
-	"github.com/rancher/types/apis/management.cattle.io/v3"
-	"github.com/rancher/types/apis/management.cattle.io/v3public"
+	"github.com/rancher/types/apis/cloud.huawei.com/v3"
+	"github.com/rancher/types/apis/cloud.huawei.com/v3public"
 	"github.com/rancher/types/factory"
 )
 
 var (
 	PublicVersion = types.APIVersion{
 		Version: "v3public",
-		Group:   "management.cattle.io",
+		Group:   "cloud.huawei.com",
 		Path:    "/v3-public",
 	}
 
