@@ -8,6 +8,8 @@ import (
 	managementSchema "github.com/rancher/types/apis/cloud.huawei.com/v3/schema"
 	publicSchema "github.com/rancher/types/apis/cloud.huawei.com/v3public/schema"
 	projectSchema "github.com/rancher/types/apis/project.cattle.io/v3/schema"
+	internalSchema "github.com/rancher/types/apis/management.cattle.io/v3/schema"
+	internalPublicSchema "github.com/rancher/types/apis/management.cattle.io/v3public/schema"
 	"github.com/rancher/types/generator"
 	"k8s.io/api/apps/v1beta2"
 	batchv1 "k8s.io/api/batch/v1"
@@ -25,6 +27,8 @@ func main() {
 	generator.Generate(publicSchema.PublicSchemas)
 	generator.Generate(clusterSchema.Schemas)
 	generator.Generate(projectSchema.Schemas)
+	generator.Generate(internalSchema.Schemas)
+	generator.Generate(internalPublicSchema.PublicSchemas)
 	generator.GenerateNativeTypes(v1.SchemeGroupVersion, []interface{}{
 		v1.Endpoints{},
 		v1.Pod{},

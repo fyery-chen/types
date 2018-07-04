@@ -33,6 +33,7 @@ import (
 	typedcorev1 "k8s.io/client-go/kubernetes/typed/core/v1"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/record"
+	internalv3 "github.com/rancher/types/apis/management.cattle.io/v3"
 )
 
 var (
@@ -57,6 +58,7 @@ type ScaledContext struct {
 	Project    projectv3.Interface
 	RBAC       rbacv1.Interface
 	Core       corev1.Interface
+	Internal   internalv3.Interface
 }
 
 func (c *ScaledContext) controllers() []controller.Starter {
@@ -113,6 +115,10 @@ func NewScaledContext(config rest.Config) (*ScaledContext, error) {
 	if err != nil {
 		return nil, err
 	}
+	context.Internal, err = internalv3.NewForConfig(config)
+	if err != nil {
+		return nil, err
+	}
 
 	dynamicConfig := config
 	if dynamicConfig.NegotiatedSerializer == nil {
@@ -163,6 +169,7 @@ type ManagementContext struct {
 	Project    projectv3.Interface
 	RBAC       rbacv1.Interface
 	Core       corev1.Interface
+	Internal   internalv3.Interface
 }
 
 func (c *ManagementContext) controllers() []controller.Starter {
