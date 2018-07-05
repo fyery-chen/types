@@ -34,6 +34,7 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/record"
 	internalv3 "github.com/rancher/types/apis/management.cattle.io/v3"
+	internalv3Schema "github.com/rancher/types/apis/management.cattle.io/v3/schema"
 )
 
 var (
@@ -139,7 +140,8 @@ func NewScaledContext(config rest.Config) (*ScaledContext, error) {
 	context.Schemas = types.NewSchemas().
 		AddSchemas(managementSchema.Schemas).
 		AddSchemas(clusterSchema.Schemas).
-		AddSchemas(projectSchema.Schemas)
+		AddSchemas(projectSchema.Schemas).
+		AddSchemas(internalv3Schema.Schemas)
 
 	return context, err
 }
