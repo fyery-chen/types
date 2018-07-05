@@ -37,7 +37,7 @@ type Client struct {
 	ProjectNetworkPolicy                    ProjectNetworkPolicyOperations
 	ClusterLogging                          ClusterLoggingOperations
 	ProjectLogging                          ProjectLoggingOperations
-	ListenConfig                            ListenConfigOperations
+	ListenConfigBusiness                    ListenConfigBusinessOperations
 	Setting                                 SettingOperations
 	Notifier                                NotifierOperations
 	ClusterAlert                            ClusterAlertOperations
@@ -49,7 +49,7 @@ type Client struct {
 	PipelineExecutionLog                    PipelineExecutionLogOperations
 	SourceCodeRepository                    SourceCodeRepositoryOperations
 	ComposeConfig                           ComposeConfigOperations
-	BusinessQuota                           BusinessQuotaOperations
+	Business                                BusinessOperations
 }
 
 func NewClient(opts *clientbase.ClientOpts) (*Client, error) {
@@ -92,7 +92,7 @@ func NewClient(opts *clientbase.ClientOpts) (*Client, error) {
 	client.ProjectNetworkPolicy = newProjectNetworkPolicyClient(client)
 	client.ClusterLogging = newClusterLoggingClient(client)
 	client.ProjectLogging = newProjectLoggingClient(client)
-	client.ListenConfig = newListenConfigClient(client)
+	client.ListenConfigBusiness = newListenConfigBusinessClient(client)
 	client.Setting = newSettingClient(client)
 	client.Notifier = newNotifierClient(client)
 	client.ClusterAlert = newClusterAlertClient(client)
@@ -104,7 +104,7 @@ func NewClient(opts *clientbase.ClientOpts) (*Client, error) {
 	client.PipelineExecutionLog = newPipelineExecutionLogClient(client)
 	client.SourceCodeRepository = newSourceCodeRepositoryClient(client)
 	client.ComposeConfig = newComposeConfigClient(client)
-	client.BusinessQuota = newBusinessQuotaClient(client)
+	client.Business = newBusinessClient(client)
 
 	return client, nil
 }

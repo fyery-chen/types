@@ -37,7 +37,7 @@ type Config struct {
 	Preferences                              map[string]managementClient.Preference                              `json:"preferences,omitempty" yaml:"preferences,omitempty"`
 	ClusterLoggings                          map[string]managementClient.ClusterLogging                          `json:"clusterLoggings,omitempty" yaml:"clusterLoggings,omitempty"`
 	ProjectLoggings                          map[string]managementClient.ProjectLogging                          `json:"projectLoggings,omitempty" yaml:"projectLoggings,omitempty"`
-	ListenConfigs                            map[string]managementClient.ListenConfig                            `json:"listenConfigs,omitempty" yaml:"listenConfigs,omitempty"`
+	ListenConfigBusinesss                    map[string]managementClient.ListenConfigBusiness                    `json:"listenConfigBusinesses,omitempty" yaml:"listenConfigBusinesses,omitempty"`
 	Settings                                 map[string]managementClient.Setting                                 `json:"settings,omitempty" yaml:"settings,omitempty"`
 	Notifiers                                map[string]managementClient.Notifier                                `json:"notifiers,omitempty" yaml:"notifiers,omitempty"`
 	ClusterAlerts                            map[string]managementClient.ClusterAlert                            `json:"clusterAlerts,omitempty" yaml:"clusterAlerts,omitempty"`
@@ -49,7 +49,7 @@ type Config struct {
 	PipelineExecutionLogs                    map[string]managementClient.PipelineExecutionLog                    `json:"pipelineExecutionLogs,omitempty" yaml:"pipelineExecutionLogs,omitempty"`
 	SourceCodeRepositorys                    map[string]managementClient.SourceCodeRepository                    `json:"sourceCodeRepositories,omitempty" yaml:"sourceCodeRepositories,omitempty"`
 	ComposeConfigs                           map[string]managementClient.ComposeConfig                           `json:"composeConfigs,omitempty" yaml:"composeConfigs,omitempty"`
-	BusinessQuotas                           map[string]managementClient.BusinessQuota                           `json:"businessQuotas,omitempty" yaml:"businessQuotas,omitempty"`
+	Businesss                                map[string]managementClient.Business                                `json:"businesses,omitempty" yaml:"businesses,omitempty"`
 
 	// Cluster Client
 	Namespaces        map[string]clusterClient.Namespace        `json:"namespaces,omitempty" yaml:"namespaces,omitempty"`

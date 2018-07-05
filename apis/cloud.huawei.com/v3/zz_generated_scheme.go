@@ -93,8 +93,8 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&ClusterLoggingList{},
 		&ProjectLogging{},
 		&ProjectLoggingList{},
-		&ListenConfig{},
-		&ListenConfigList{},
+		&ListenConfigBusiness{},
+		&ListenConfigBusinessList{},
 		&Setting{},
 		&SettingList{},
 		&Notifier{},
@@ -117,8 +117,8 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&SourceCodeRepositoryList{},
 		&ComposeConfig{},
 		&ComposeConfigList{},
-		&BusinessQuota{},
-		&BusinessQuotaList{},
+		&Business{},
+		&BusinessList{},
 	)
 	return nil
 }

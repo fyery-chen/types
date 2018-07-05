@@ -45,7 +45,7 @@ type Interface interface {
 	ProjectNetworkPoliciesGetter
 	ClusterLoggingsGetter
 	ProjectLoggingsGetter
-	ListenConfigsGetter
+	ListenConfigBusinessesGetter
 	SettingsGetter
 	NotifiersGetter
 	ClusterAlertsGetter
@@ -57,7 +57,7 @@ type Interface interface {
 	PipelineExecutionLogsGetter
 	SourceCodeRepositoriesGetter
 	ComposeConfigsGetter
-	BusinessQuotasGetter
+	BusinessesGetter
 }
 
 type Client struct {
@@ -95,7 +95,7 @@ type Client struct {
 	projectNetworkPolicyControllers                    map[string]ProjectNetworkPolicyController
 	clusterLoggingControllers                          map[string]ClusterLoggingController
 	projectLoggingControllers                          map[string]ProjectLoggingController
-	listenConfigControllers                            map[string]ListenConfigController
+	listenConfigBusinessControllers                    map[string]ListenConfigBusinessController
 	settingControllers                                 map[string]SettingController
 	notifierControllers                                map[string]NotifierController
 	clusterAlertControllers                            map[string]ClusterAlertController
@@ -107,7 +107,7 @@ type Client struct {
 	pipelineExecutionLogControllers                    map[string]PipelineExecutionLogController
 	sourceCodeRepositoryControllers                    map[string]SourceCodeRepositoryController
 	composeConfigControllers                           map[string]ComposeConfigController
-	businessQuotaControllers                           map[string]BusinessQuotaController
+	businessControllers                                map[string]BusinessController
 }
 
 func NewForConfig(config rest.Config) (Interface, error) {
@@ -154,7 +154,7 @@ func NewForConfig(config rest.Config) (Interface, error) {
 		projectNetworkPolicyControllers:                    map[string]ProjectNetworkPolicyController{},
 		clusterLoggingControllers:                          map[string]ClusterLoggingController{},
 		projectLoggingControllers:                          map[string]ProjectLoggingController{},
-		listenConfigControllers:                            map[string]ListenConfigController{},
+		listenConfigBusinessControllers:                    map[string]ListenConfigBusinessController{},
 		settingControllers:                                 map[string]SettingController{},
 		notifierControllers:                                map[string]NotifierController{},
 		clusterAlertControllers:                            map[string]ClusterAlertController{},
@@ -166,7 +166,7 @@ func NewForConfig(config rest.Config) (Interface, error) {
 		pipelineExecutionLogControllers:                    map[string]PipelineExecutionLogController{},
 		sourceCodeRepositoryControllers:                    map[string]SourceCodeRepositoryController{},
 		composeConfigControllers:                           map[string]ComposeConfigController{},
-		businessQuotaControllers:                           map[string]BusinessQuotaController{},
+		businessControllers:                                map[string]BusinessController{},
 	}, nil
 }
 
@@ -572,13 +572,13 @@ func (c *Client) ProjectLoggings(namespace string) ProjectLoggingInterface {
 	}
 }
 
-type ListenConfigsGetter interface {
-	ListenConfigs(namespace string) ListenConfigInterface
+type ListenConfigBusinessesGetter interface {
+	ListenConfigBusinesses(namespace string) ListenConfigBusinessInterface
 }
 
-func (c *Client) ListenConfigs(namespace string) ListenConfigInterface {
-	objectClient := objectclient.NewObjectClient(namespace, c.restClient, &ListenConfigResource, ListenConfigGroupVersionKind, listenConfigFactory{})
-	return &listenConfigClient{
+func (c *Client) ListenConfigBusinesses(namespace string) ListenConfigBusinessInterface {
+	objectClient := objectclient.NewObjectClient(namespace, c.restClient, &ListenConfigBusinessResource, ListenConfigBusinessGroupVersionKind, listenConfigBusinessFactory{})
+	return &listenConfigBusinessClient{
 		ns:           namespace,
 		client:       c,
 		objectClient: objectClient,
@@ -728,13 +728,13 @@ func (c *Client) ComposeConfigs(namespace string) ComposeConfigInterface {
 	}
 }
 
-type BusinessQuotasGetter interface {
-	BusinessQuotas(namespace string) BusinessQuotaInterface
+type BusinessesGetter interface {
+	Businesses(namespace string) BusinessInterface
 }
 
-func (c *Client) BusinessQuotas(namespace string) BusinessQuotaInterface {
-	objectClient := objectclient.NewObjectClient(namespace, c.restClient, &BusinessQuotaResource, BusinessQuotaGroupVersionKind, businessQuotaFactory{})
-	return &businessQuotaClient{
+func (c *Client) Businesses(namespace string) BusinessInterface {
+	objectClient := objectclient.NewObjectClient(namespace, c.restClient, &BusinessResource, BusinessGroupVersionKind, businessFactory{})
+	return &businessClient{
 		ns:           namespace,
 		client:       c,
 		objectClient: objectClient,

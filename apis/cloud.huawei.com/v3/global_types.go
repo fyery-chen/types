@@ -13,7 +13,7 @@ type Setting struct {
 	Customized bool   `json:"customized" norman:"nocreate,noupdate"`
 }
 
-type ListenConfig struct {
+type ListenConfigBusiness struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 

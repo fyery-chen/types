@@ -5,7 +5,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-type BusinessQuota struct {
+type Business struct {
 	types.Namespaced
 
 	metav1.TypeMeta `json:",inline"`
@@ -27,13 +27,10 @@ type BusinessQuotaSpec struct {
 	DisplayName  string `json:"displayName,omitempty" norman:"required"`
 	BusinessName string `json:"businessName,omitempty" norman:"type=reference[business]"`
 	Description  string `json:"description,omitempty"`
-	CpuQuota     int    `json:"cpuQuota,omitempty"`
-	MemoryQuota  int    `json:"memoryQuota,omitempty"`
+	NodeCount    int    `json:"nodeCount,omitempty"`
 }
 
 type BusinessQuotaCheck struct {
 	BusinessName string `json:"businessName,omitempty" norman:"type=string,required"`
-	CpuQuota     int    `json:"cpuQuota,omitempty" norman:"required"`
-	MemoryQuota  int    `json:"memoryQuota,omitempty" norman:"required"`
 	NodeCount    int    `json:"nodeCount,omitempty" norman:"required"`
 }

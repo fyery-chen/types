@@ -44,17 +44,16 @@ var (
 
 func businessQuotaTypes(schema *types.Schemas) *types.Schemas {
 	return schema.
-		AddMapperForType(&Version, v3.BusinessQuota{},
+		AddMapperForType(&Version, v3.Business{},
 			m.DisplayName{}).
-		MustImport(&Version, v3.BusinessQuota{}).
-		MustImportAndCustomize(&Version, v3.BusinessQuota{}, func(schema *types.Schema) {
+		MustImport(&Version, v3.Business{}).
+		MustImportAndCustomize(&Version, v3.BusinessQuotaCheck{}, func(schema *types.Schema) {
 			schema.ResourceActions = map[string]types.Action{
 				"checkout": {
 					Input: "businessQuotaCheck",
 				},
 			}
-		}).
-		MustImport(&Version, v3.BusinessQuotaCheck{})
+		})
 }
 
 func rkeTypes(schemas *types.Schemas) *types.Schemas {
@@ -387,12 +386,12 @@ func logTypes(schema *types.Schemas) *types.Schemas {
 
 func globalTypes(schema *types.Schemas) *types.Schemas {
 	return schema.
-		AddMapperForType(&Version, v3.ListenConfig{},
+		AddMapperForType(&Version, v3.ListenConfigBusiness{},
 			m.DisplayName{},
 			m.Drop{Field: "caKey"},
 			m.Drop{Field: "caCert"},
 		).
-		MustImport(&Version, v3.ListenConfig{}).
+		MustImport(&Version, v3.ListenConfigBusiness{}).
 		MustImportAndCustomize(&Version, v3.Setting{}, func(schema *types.Schema) {
 			schema.MustCustomizeField("name", func(f types.Field) types.Field {
 				f.Required = true
