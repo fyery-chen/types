@@ -213,6 +213,7 @@ func authzTypes(schemas *types.Schemas) *types.Schemas {
 		}).
 		MustImport(&Version, v3.ClusterRoleTemplateBinding{}).
 		MustImport(&Version, v3.ProjectRoleTemplateBinding{}).
+		MustImport(&Version, v3.BusinessRoleTemplateBinding{}).
 		MustImport(&Version, v3.GlobalRoleBinding{})
 }
 

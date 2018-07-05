@@ -127,6 +127,19 @@ type ClusterRoleTemplateBinding struct {
 	RoleTemplateName   string `json:"roleTemplateName,omitempty" norman:"required,type=reference[roleTemplate]"`
 }
 
+type BusinessRoleTemplateBinding struct {
+	types.Namespaced
+	metav1.TypeMeta   `json:",inline"`
+	metav1.ObjectMeta `json:"metadata,omitempty"`
+
+	UserName           string `json:"userName,omitempty" norman:"type=reference[user]"`
+	UserPrincipalName  string `json:"userPrincipalName,omitempty" norman:"type=reference[principal]"`
+	GroupName          string `json:"groupName,omitempty" norman:"type=reference[group]"`
+	GroupPrincipalName string `json:"groupPrincipalName,omitempty" norman:"type=reference[principal]"`
+	BusinessName       string `json:"businessName,omitempty" norman:"required,type=reference[business]"`
+	RoleTemplateName   string `json:"roleTemplateName,omitempty" norman:"required,type=reference[roleTemplate]"`
+}
+
 type SetPodSecurityPolicyTemplateInput struct {
 	PodSecurityPolicyTemplateName string `json:"podSecurityPolicyTemplateId" norman:"required,type=reference[podSecurityPolicyTemplate]"`
 }
