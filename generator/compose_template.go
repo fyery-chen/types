@@ -3,9 +3,8 @@ package generator
 var composeTemplate = `package compose
 
 import (
-	clusterClient "github.com/rancher/types/client/cluster/v3"
-	managementClient "github.com/rancher/types/client/cloud/v3"
-	projectClient "github.com/rancher/types/client/project/v3"
+	businessClient "github.com/rancher/types/client/cloud/v3"
+	managementClient "github.com/rancher/types/client/management/v3"
 )
 
 type Config struct {
@@ -16,12 +15,8 @@ type Config struct {
     {{- if . | hasPost }}{{.CodeName}}s map[string]managementClient.{{.CodeName}} %BACK%json:"{{.PluralName}},omitempty" yaml:"{{.PluralName}},omitempty"%BACK%
 {{end}}{{end}}
 
-	// Cluster Client
-	{{range .clusterSchemas}}
-	{{- if . | hasGet }}{{.CodeName}}s map[string]clusterClient.{{.CodeName}} %BACK%json:"{{.PluralName}},omitempty" yaml:"{{.PluralName}},omitempty"%BACK%
+	// Business Client
+	{{range .businessSchemas}}
+	{{- if . | hasGet }}{{.CodeName}}s map[string]businessClient.{{.CodeName}} %BACK%json:"{{.PluralName}},omitempty" yaml:"{{.PluralName}},omitempty"%BACK%
 {{end}}{{end}}
-
-	// Project Client
-	{{range .projectSchemas}}
-	{{- if . | hasGet }}{{.CodeName}}s map[string]projectClient.{{.CodeName}} %BACK%json:"{{.PluralName}},omitempty" yaml:"{{.PluralName}},omitempty"%BACK%
-{{end}}{{end}}}`
+`
