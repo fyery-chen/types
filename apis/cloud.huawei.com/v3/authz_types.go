@@ -4,6 +4,13 @@ import (
 	"github.com/rancher/norman/types"
 	rbacv1 "k8s.io/api/rbac/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"github.com/rancher/norman/condition"
+)
+
+var (
+	NamespaceBackedResource     condition.Cond = "BackingNamespaceCreated"
+	CreatorMadeOwner            condition.Cond = "CreatorMadeOwner"
+	DefaultNetworkPolicyCreated condition.Cond = "DefaultNetworkPolicyCreated"
 )
 
 type BusinessGlobalRole struct {
@@ -35,8 +42,8 @@ type BusinessRoleTemplate struct {
 	External          bool                `json:"external"`
 	Hidden            bool                `json:"hidden"`
 	Locked            bool                `json:"locked,omitempty" norman:"type=boolean"`
-	Context           string              `json:"context" norman:"type=string,options=project|cluster"`
-	RoleTemplateNames []string            `json:"roleTemplateNames,omitempty" norman:"type=array[reference[roleTemplate]]"`
+	Context           string              `json:"context" norman:"type=string,options=project|cluster|business"`
+	RoleTemplateNames []string            `json:"roleTemplateNames,omitempty" norman:"type=array[reference[businessRoleTemplate]]"`
 }
 
 type BusinessRoleTemplateBinding struct {
@@ -49,5 +56,5 @@ type BusinessRoleTemplateBinding struct {
 	GroupName          string `json:"groupName,omitempty" norman:"type=reference[group]"`
 	GroupPrincipalName string `json:"groupPrincipalName,omitempty" norman:"type=reference[principal]"`
 	BusinessName       string `json:"businessName,omitempty" norman:"required,type=reference[business]"`
-	RoleTemplateName   string `json:"roleTemplateName,omitempty" norman:"required,type=reference[roleTemplate]"`
+	RoleTemplateName   string `json:"roleTemplateName,omitempty" norman:"required,type=reference[businessRoleTemplate]"`
 }
