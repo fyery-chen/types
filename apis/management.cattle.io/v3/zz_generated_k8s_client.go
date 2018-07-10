@@ -25,6 +25,9 @@ type Interface interface {
 	PreferencesGetter
 	ListenConfigsGetter
 	SettingsGetter
+	ClustersGetter
+	ClusterEventsGetter
+	ClusterRegistrationTokensGetter
 }
 
 type Client struct {
@@ -32,16 +35,19 @@ type Client struct {
 	restClient rest.Interface
 	starters   []controller.Starter
 
-	groupControllers         map[string]GroupController
-	groupMemberControllers   map[string]GroupMemberController
-	principalControllers     map[string]PrincipalController
-	userControllers          map[string]UserController
-	authConfigControllers    map[string]AuthConfigController
-	tokenControllers         map[string]TokenController
-	dynamicSchemaControllers map[string]DynamicSchemaController
-	preferenceControllers    map[string]PreferenceController
-	listenConfigControllers  map[string]ListenConfigController
-	settingControllers       map[string]SettingController
+	groupControllers                    map[string]GroupController
+	groupMemberControllers              map[string]GroupMemberController
+	principalControllers                map[string]PrincipalController
+	userControllers                     map[string]UserController
+	authConfigControllers               map[string]AuthConfigController
+	tokenControllers                    map[string]TokenController
+	dynamicSchemaControllers            map[string]DynamicSchemaController
+	preferenceControllers               map[string]PreferenceController
+	listenConfigControllers             map[string]ListenConfigController
+	settingControllers                  map[string]SettingController
+	clusterControllers                  map[string]ClusterController
+	clusterEventControllers             map[string]ClusterEventController
+	clusterRegistrationTokenControllers map[string]ClusterRegistrationTokenController
 }
 
 func NewForConfig(config rest.Config) (Interface, error) {
@@ -58,16 +64,19 @@ func NewForConfig(config rest.Config) (Interface, error) {
 	return &Client{
 		restClient: restClient,
 
-		groupControllers:         map[string]GroupController{},
-		groupMemberControllers:   map[string]GroupMemberController{},
-		principalControllers:     map[string]PrincipalController{},
-		userControllers:          map[string]UserController{},
-		authConfigControllers:    map[string]AuthConfigController{},
-		tokenControllers:         map[string]TokenController{},
-		dynamicSchemaControllers: map[string]DynamicSchemaController{},
-		preferenceControllers:    map[string]PreferenceController{},
-		listenConfigControllers:  map[string]ListenConfigController{},
-		settingControllers:       map[string]SettingController{},
+		groupControllers:                    map[string]GroupController{},
+		groupMemberControllers:              map[string]GroupMemberController{},
+		principalControllers:                map[string]PrincipalController{},
+		userControllers:                     map[string]UserController{},
+		authConfigControllers:               map[string]AuthConfigController{},
+		tokenControllers:                    map[string]TokenController{},
+		dynamicSchemaControllers:            map[string]DynamicSchemaController{},
+		preferenceControllers:               map[string]PreferenceController{},
+		listenConfigControllers:             map[string]ListenConfigController{},
+		settingControllers:                  map[string]SettingController{},
+		clusterControllers:                  map[string]ClusterController{},
+		clusterEventControllers:             map[string]ClusterEventController{},
+		clusterRegistrationTokenControllers: map[string]ClusterRegistrationTokenController{},
 	}, nil
 }
 
@@ -207,6 +216,45 @@ type SettingsGetter interface {
 func (c *Client) Settings(namespace string) SettingInterface {
 	objectClient := objectclient.NewObjectClient(namespace, c.restClient, &SettingResource, SettingGroupVersionKind, settingFactory{})
 	return &settingClient{
+		ns:           namespace,
+		client:       c,
+		objectClient: objectClient,
+	}
+}
+
+type ClustersGetter interface {
+	Clusters(namespace string) ClusterInterface
+}
+
+func (c *Client) Clusters(namespace string) ClusterInterface {
+	objectClient := objectclient.NewObjectClient(namespace, c.restClient, &ClusterResource, ClusterGroupVersionKind, clusterFactory{})
+	return &clusterClient{
+		ns:           namespace,
+		client:       c,
+		objectClient: objectClient,
+	}
+}
+
+type ClusterEventsGetter interface {
+	ClusterEvents(namespace string) ClusterEventInterface
+}
+
+func (c *Client) ClusterEvents(namespace string) ClusterEventInterface {
+	objectClient := objectclient.NewObjectClient(namespace, c.restClient, &ClusterEventResource, ClusterEventGroupVersionKind, clusterEventFactory{})
+	return &clusterEventClient{
+		ns:           namespace,
+		client:       c,
+		objectClient: objectClient,
+	}
+}
+
+type ClusterRegistrationTokensGetter interface {
+	ClusterRegistrationTokens(namespace string) ClusterRegistrationTokenInterface
+}
+
+func (c *Client) ClusterRegistrationTokens(namespace string) ClusterRegistrationTokenInterface {
+	objectClient := objectclient.NewObjectClient(namespace, c.restClient, &ClusterRegistrationTokenResource, ClusterRegistrationTokenGroupVersionKind, clusterRegistrationTokenFactory{})
+	return &clusterRegistrationTokenClient{
 		ns:           namespace,
 		client:       c,
 		objectClient: objectClient,

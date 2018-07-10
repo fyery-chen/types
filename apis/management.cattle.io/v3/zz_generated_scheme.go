@@ -53,6 +53,12 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&ListenConfigList{},
 		&Setting{},
 		&SettingList{},
+		&Cluster{},
+		&ClusterList{},
+		&ClusterEvent{},
+		&ClusterEventList{},
+		&ClusterRegistrationToken{},
+		&ClusterRegistrationTokenList{},
 	)
 	return nil
 }

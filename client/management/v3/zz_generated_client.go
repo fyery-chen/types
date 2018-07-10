@@ -7,16 +7,19 @@ import (
 type Client struct {
 	clientbase.APIBaseClient
 
-	Group         GroupOperations
-	GroupMember   GroupMemberOperations
-	Principal     PrincipalOperations
-	User          UserOperations
-	AuthConfig    AuthConfigOperations
-	Token         TokenOperations
-	DynamicSchema DynamicSchemaOperations
-	Preference    PreferenceOperations
-	ListenConfig  ListenConfigOperations
-	Setting       SettingOperations
+	Group                    GroupOperations
+	GroupMember              GroupMemberOperations
+	Principal                PrincipalOperations
+	User                     UserOperations
+	AuthConfig               AuthConfigOperations
+	Token                    TokenOperations
+	DynamicSchema            DynamicSchemaOperations
+	Preference               PreferenceOperations
+	ListenConfig             ListenConfigOperations
+	Setting                  SettingOperations
+	Cluster                  ClusterOperations
+	ClusterEvent             ClusterEventOperations
+	ClusterRegistrationToken ClusterRegistrationTokenOperations
 }
 
 func NewClient(opts *clientbase.ClientOpts) (*Client, error) {
@@ -39,6 +42,9 @@ func NewClient(opts *clientbase.ClientOpts) (*Client, error) {
 	client.Preference = newPreferenceClient(client)
 	client.ListenConfig = newListenConfigClient(client)
 	client.Setting = newSettingClient(client)
+	client.Cluster = newClusterClient(client)
+	client.ClusterEvent = newClusterEventClient(client)
+	client.ClusterRegistrationToken = newClusterRegistrationTokenClient(client)
 
 	return client, nil
 }

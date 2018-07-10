@@ -1,10 +1,10 @@
 package v3
 
 import (
+	"github.com/rancher/norman/condition"
 	"github.com/rancher/norman/types"
 	rbacv1 "k8s.io/api/rbac/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"github.com/rancher/norman/condition"
 )
 
 var (

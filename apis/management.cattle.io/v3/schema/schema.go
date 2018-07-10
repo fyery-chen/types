@@ -21,11 +21,55 @@ var (
 		Init(tokens).
 		Init(schemaTypes).
 		Init(userTypes).
-		Init(globalTypes)
+		Init(globalTypes).
+		Init(clusterTypes)
 
 	TokenSchemas = factory.Schemas(&Version).
 			Init(tokens)
 )
+
+func clusterTypes(schemas *types.Schemas) *types.Schemas {
+	return schemas.
+		AddMapperForType(&Version, v3.Cluster{},
+			&m.Embed{Field: "status"},
+			m.DisplayName{},
+		).
+		AddMapperForType(&Version, v3.ClusterStatus{},
+			m.Drop{Field: "serviceAccountToken"},
+		).
+		AddMapperForType(&Version, v3.ClusterEvent{}, &m.Move{
+			From: "type",
+			To:   "eventType",
+		}).
+		AddMapperForType(&Version, v3.ClusterRegistrationToken{},
+			&m.Embed{Field: "status"},
+		).
+		MustImport(&Version, v3.Cluster{}).
+		MustImport(&Version, v3.ClusterEvent{}).
+		MustImport(&Version, v3.ClusterRegistrationToken{}).
+		MustImport(&Version, v3.GenerateKubeConfigOutput{}).
+		MustImport(&Version, v3.ImportClusterYamlInput{}).
+		MustImport(&Version, v3.ImportYamlOutput{}).
+		MustImport(&Version, v3.ExportOutput{}).
+		MustImportAndCustomize(&Version, v3.Cluster{}, func(schema *types.Schema) {
+			schema.MustCustomizeField("name", func(field types.Field) types.Field {
+				field.Type = "dnsLabel"
+				field.Nullable = true
+				field.Required = false
+				return field
+			})
+			schema.ResourceActions["generateKubeconfig"] = types.Action{
+				Output: "generateKubeConfigOutput",
+			}
+			schema.ResourceActions["importYaml"] = types.Action{
+				Input:  "importClusterYamlInput",
+				Output: "importYamlOutput",
+			}
+			schema.ResourceActions["exportYaml"] = types.Action{
+				Output: "exportOutput",
+			}
+		})
+}
 
 func schemaTypes(schemas *types.Schemas) *types.Schemas {
 	return schemas.
