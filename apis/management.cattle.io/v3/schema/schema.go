@@ -22,11 +22,16 @@ var (
 		Init(schemaTypes).
 		Init(userTypes).
 		Init(globalTypes).
+		Init(rkeTypes).
 		Init(clusterTypes)
 
 	TokenSchemas = factory.Schemas(&Version).
 			Init(tokens)
 )
+
+func rkeTypes(schemas *types.Schemas) *types.Schemas {
+	return schemas.AddMapperForType(&Version, v3.BaseService{}, m.Drop{Field: "image"})
+}
 
 func clusterTypes(schemas *types.Schemas) *types.Schemas {
 	return schemas.

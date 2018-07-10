@@ -20,6 +20,10 @@ func init() {
 func RegisterDeepCopies(scheme *runtime.Scheme) error {
 	return scheme.AddGeneratedDeepCopyFuncs(
 		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*AWSCloudProvider).DeepCopyInto(out.(*AWSCloudProvider))
+			return nil
+		}, InType: reflect.TypeOf(&AWSCloudProvider{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
 			in.(*Action).DeepCopyInto(out.(*Action))
 			return nil
 		}, InType: reflect.TypeOf(&Action{})},
@@ -44,13 +48,45 @@ func RegisterDeepCopies(scheme *runtime.Scheme) error {
 			return nil
 		}, InType: reflect.TypeOf(&AuthConfigList{})},
 		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*AuthnConfig).DeepCopyInto(out.(*AuthnConfig))
+			return nil
+		}, InType: reflect.TypeOf(&AuthnConfig{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*AuthzConfig).DeepCopyInto(out.(*AuthzConfig))
+			return nil
+		}, InType: reflect.TypeOf(&AuthzConfig{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*AzureCloudProvider).DeepCopyInto(out.(*AzureCloudProvider))
+			return nil
+		}, InType: reflect.TypeOf(&AzureCloudProvider{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
 			in.(*AzureKubernetesServiceConfig).DeepCopyInto(out.(*AzureKubernetesServiceConfig))
 			return nil
 		}, InType: reflect.TypeOf(&AzureKubernetesServiceConfig{})},
 		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*BaseService).DeepCopyInto(out.(*BaseService))
+			return nil
+		}, InType: reflect.TypeOf(&BaseService{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*BastionHost).DeepCopyInto(out.(*BastionHost))
+			return nil
+		}, InType: reflect.TypeOf(&BastionHost{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*CalicoNetworkProvider).DeepCopyInto(out.(*CalicoNetworkProvider))
+			return nil
+		}, InType: reflect.TypeOf(&CalicoNetworkProvider{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*CanalNetworkProvider).DeepCopyInto(out.(*CanalNetworkProvider))
+			return nil
+		}, InType: reflect.TypeOf(&CanalNetworkProvider{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
 			in.(*ChangePasswordInput).DeepCopyInto(out.(*ChangePasswordInput))
 			return nil
 		}, InType: reflect.TypeOf(&ChangePasswordInput{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*CloudProvider).DeepCopyInto(out.(*CloudProvider))
+			return nil
+		}, InType: reflect.TypeOf(&CloudProvider{})},
 		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
 			in.(*Cluster).DeepCopyInto(out.(*Cluster))
 			return nil
@@ -116,6 +152,10 @@ func RegisterDeepCopies(scheme *runtime.Scheme) error {
 			return nil
 		}, InType: reflect.TypeOf(&DynamicSchemaStatus{})},
 		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*ETCDService).DeepCopyInto(out.(*ETCDService))
+			return nil
+		}, InType: reflect.TypeOf(&ETCDService{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
 			in.(*ExportOutput).DeepCopyInto(out.(*ExportOutput))
 			return nil
 		}, InType: reflect.TypeOf(&ExportOutput{})},
@@ -127,6 +167,10 @@ func RegisterDeepCopies(scheme *runtime.Scheme) error {
 			in.(*Filter).DeepCopyInto(out.(*Filter))
 			return nil
 		}, InType: reflect.TypeOf(&Filter{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*FlannelNetworkProvider).DeepCopyInto(out.(*FlannelNetworkProvider))
+			return nil
+		}, InType: reflect.TypeOf(&FlannelNetworkProvider{})},
 		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
 			in.(*GenerateKubeConfigOutput).DeepCopyInto(out.(*GenerateKubeConfigOutput))
 			return nil
@@ -164,6 +208,10 @@ func RegisterDeepCopies(scheme *runtime.Scheme) error {
 			return nil
 		}, InType: reflect.TypeOf(&GroupMemberList{})},
 		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*HealthCheck).DeepCopyInto(out.(*HealthCheck))
+			return nil
+		}, InType: reflect.TypeOf(&HealthCheck{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
 			in.(*ImportClusterYamlInput).DeepCopyInto(out.(*ImportClusterYamlInput))
 			return nil
 		}, InType: reflect.TypeOf(&ImportClusterYamlInput{})},
@@ -175,6 +223,30 @@ func RegisterDeepCopies(scheme *runtime.Scheme) error {
 			in.(*ImportedConfig).DeepCopyInto(out.(*ImportedConfig))
 			return nil
 		}, InType: reflect.TypeOf(&ImportedConfig{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*IngressConfig).DeepCopyInto(out.(*IngressConfig))
+			return nil
+		}, InType: reflect.TypeOf(&IngressConfig{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*KubeAPIService).DeepCopyInto(out.(*KubeAPIService))
+			return nil
+		}, InType: reflect.TypeOf(&KubeAPIService{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*KubeControllerService).DeepCopyInto(out.(*KubeControllerService))
+			return nil
+		}, InType: reflect.TypeOf(&KubeControllerService{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*KubeletService).DeepCopyInto(out.(*KubeletService))
+			return nil
+		}, InType: reflect.TypeOf(&KubeletService{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*KubeproxyService).DeepCopyInto(out.(*KubeproxyService))
+			return nil
+		}, InType: reflect.TypeOf(&KubeproxyService{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*KubernetesServicesOptions).DeepCopyInto(out.(*KubernetesServicesOptions))
+			return nil
+		}, InType: reflect.TypeOf(&KubernetesServicesOptions{})},
 		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
 			in.(*ListOpts).DeepCopyInto(out.(*ListOpts))
 			return nil
@@ -192,6 +264,14 @@ func RegisterDeepCopies(scheme *runtime.Scheme) error {
 			return nil
 		}, InType: reflect.TypeOf(&LocalConfig{})},
 		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*NetworkConfig).DeepCopyInto(out.(*NetworkConfig))
+			return nil
+		}, InType: reflect.TypeOf(&NetworkConfig{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*PortCheck).DeepCopyInto(out.(*PortCheck))
+			return nil
+		}, InType: reflect.TypeOf(&PortCheck{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
 			in.(*Preference).DeepCopyInto(out.(*Preference))
 			return nil
 		}, InType: reflect.TypeOf(&Preference{})},
@@ -207,6 +287,42 @@ func RegisterDeepCopies(scheme *runtime.Scheme) error {
 			in.(*PrincipalList).DeepCopyInto(out.(*PrincipalList))
 			return nil
 		}, InType: reflect.TypeOf(&PrincipalList{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*PrivateRegistry).DeepCopyInto(out.(*PrivateRegistry))
+			return nil
+		}, InType: reflect.TypeOf(&PrivateRegistry{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*Process).DeepCopyInto(out.(*Process))
+			return nil
+		}, InType: reflect.TypeOf(&Process{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*RKEConfigNode).DeepCopyInto(out.(*RKEConfigNode))
+			return nil
+		}, InType: reflect.TypeOf(&RKEConfigNode{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*RKEConfigNodePlan).DeepCopyInto(out.(*RKEConfigNodePlan))
+			return nil
+		}, InType: reflect.TypeOf(&RKEConfigNodePlan{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*RKEConfigServices).DeepCopyInto(out.(*RKEConfigServices))
+			return nil
+		}, InType: reflect.TypeOf(&RKEConfigServices{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*RKEPlan).DeepCopyInto(out.(*RKEPlan))
+			return nil
+		}, InType: reflect.TypeOf(&RKEPlan{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*RKESystemImages).DeepCopyInto(out.(*RKESystemImages))
+			return nil
+		}, InType: reflect.TypeOf(&RKESystemImages{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*RancherKubernetesEngineConfig).DeepCopyInto(out.(*RancherKubernetesEngineConfig))
+			return nil
+		}, InType: reflect.TypeOf(&RancherKubernetesEngineConfig{})},
+		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
+			in.(*SchedulerService).DeepCopyInto(out.(*SchedulerService))
+			return nil
+		}, InType: reflect.TypeOf(&SchedulerService{})},
 		conversion.GeneratedDeepCopyFunc{Fn: func(in interface{}, out interface{}, c *conversion.Cloner) error {
 			in.(*SearchPrincipalsInput).DeepCopyInto(out.(*SearchPrincipalsInput))
 			return nil
@@ -244,6 +360,22 @@ func RegisterDeepCopies(scheme *runtime.Scheme) error {
 			return nil
 		}, InType: reflect.TypeOf(&Values{})},
 	)
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *AWSCloudProvider) DeepCopyInto(out *AWSCloudProvider) {
+	*out = *in
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new AWSCloudProvider.
+func (in *AWSCloudProvider) DeepCopy() *AWSCloudProvider {
+	if in == nil {
+		return nil
+	}
+	out := new(AWSCloudProvider)
+	in.DeepCopyInto(out)
+	return out
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
@@ -395,6 +527,73 @@ func (in *AuthConfigList) DeepCopyObject() runtime.Object {
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *AuthnConfig) DeepCopyInto(out *AuthnConfig) {
+	*out = *in
+	if in.Options != nil {
+		in, out := &in.Options, &out.Options
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	if in.SANs != nil {
+		in, out := &in.SANs, &out.SANs
+		*out = make([]string, len(*in))
+		copy(*out, *in)
+	}
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new AuthnConfig.
+func (in *AuthnConfig) DeepCopy() *AuthnConfig {
+	if in == nil {
+		return nil
+	}
+	out := new(AuthnConfig)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *AuthzConfig) DeepCopyInto(out *AuthzConfig) {
+	*out = *in
+	if in.Options != nil {
+		in, out := &in.Options, &out.Options
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new AuthzConfig.
+func (in *AuthzConfig) DeepCopy() *AuthzConfig {
+	if in == nil {
+		return nil
+	}
+	out := new(AuthzConfig)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *AzureCloudProvider) DeepCopyInto(out *AzureCloudProvider) {
+	*out = *in
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new AzureCloudProvider.
+func (in *AzureCloudProvider) DeepCopy() *AzureCloudProvider {
+	if in == nil {
+		return nil
+	}
+	out := new(AzureCloudProvider)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *AzureKubernetesServiceConfig) DeepCopyInto(out *AzureKubernetesServiceConfig) {
 	*out = *in
 	if in.Tag != nil {
@@ -418,6 +617,83 @@ func (in *AzureKubernetesServiceConfig) DeepCopy() *AzureKubernetesServiceConfig
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *BaseService) DeepCopyInto(out *BaseService) {
+	*out = *in
+	if in.ExtraArgs != nil {
+		in, out := &in.ExtraArgs, &out.ExtraArgs
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	if in.ExtraBinds != nil {
+		in, out := &in.ExtraBinds, &out.ExtraBinds
+		*out = make([]string, len(*in))
+		copy(*out, *in)
+	}
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new BaseService.
+func (in *BaseService) DeepCopy() *BaseService {
+	if in == nil {
+		return nil
+	}
+	out := new(BaseService)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *BastionHost) DeepCopyInto(out *BastionHost) {
+	*out = *in
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new BastionHost.
+func (in *BastionHost) DeepCopy() *BastionHost {
+	if in == nil {
+		return nil
+	}
+	out := new(BastionHost)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *CalicoNetworkProvider) DeepCopyInto(out *CalicoNetworkProvider) {
+	*out = *in
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new CalicoNetworkProvider.
+func (in *CalicoNetworkProvider) DeepCopy() *CalicoNetworkProvider {
+	if in == nil {
+		return nil
+	}
+	out := new(CalicoNetworkProvider)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *CanalNetworkProvider) DeepCopyInto(out *CanalNetworkProvider) {
+	*out = *in
+	out.FlannelNetworkProvider = in.FlannelNetworkProvider
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new CanalNetworkProvider.
+func (in *CanalNetworkProvider) DeepCopy() *CanalNetworkProvider {
+	if in == nil {
+		return nil
+	}
+	out := new(CanalNetworkProvider)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *ChangePasswordInput) DeepCopyInto(out *ChangePasswordInput) {
 	*out = *in
 	return
@@ -429,6 +705,47 @@ func (in *ChangePasswordInput) DeepCopy() *ChangePasswordInput {
 		return nil
 	}
 	out := new(ChangePasswordInput)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *CloudProvider) DeepCopyInto(out *CloudProvider) {
+	*out = *in
+	if in.CloudConfig != nil {
+		in, out := &in.CloudConfig, &out.CloudConfig
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	if in.AWSCloudProvider != nil {
+		in, out := &in.AWSCloudProvider, &out.AWSCloudProvider
+		if *in == nil {
+			*out = nil
+		} else {
+			*out = new(AWSCloudProvider)
+			**out = **in
+		}
+	}
+	if in.AzureCloudProvider != nil {
+		in, out := &in.AzureCloudProvider, &out.AzureCloudProvider
+		if *in == nil {
+			*out = nil
+		} else {
+			*out = new(AzureCloudProvider)
+			**out = **in
+		}
+	}
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new CloudProvider.
+func (in *CloudProvider) DeepCopy() *CloudProvider {
+	if in == nil {
+		return nil
+	}
+	out := new(CloudProvider)
 	in.DeepCopyInto(out)
 	return out
 }
@@ -963,6 +1280,28 @@ func (in *DynamicSchemaStatus) DeepCopy() *DynamicSchemaStatus {
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ETCDService) DeepCopyInto(out *ETCDService) {
+	*out = *in
+	in.BaseService.DeepCopyInto(&out.BaseService)
+	if in.ExternalURLs != nil {
+		in, out := &in.ExternalURLs, &out.ExternalURLs
+		*out = make([]string, len(*in))
+		copy(*out, *in)
+	}
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ETCDService.
+func (in *ETCDService) DeepCopy() *ETCDService {
+	if in == nil {
+		return nil
+	}
+	out := new(ETCDService)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *ExportOutput) DeepCopyInto(out *ExportOutput) {
 	*out = *in
 	return
@@ -1017,6 +1356,22 @@ func (in *Filter) DeepCopy() *Filter {
 		return nil
 	}
 	out := new(Filter)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *FlannelNetworkProvider) DeepCopyInto(out *FlannelNetworkProvider) {
+	*out = *in
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new FlannelNetworkProvider.
+func (in *FlannelNetworkProvider) DeepCopy() *FlannelNetworkProvider {
+	if in == nil {
+		return nil
+	}
+	out := new(FlannelNetworkProvider)
 	in.DeepCopyInto(out)
 	return out
 }
@@ -1249,6 +1604,22 @@ func (in *GroupMemberList) DeepCopyObject() runtime.Object {
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *HealthCheck) DeepCopyInto(out *HealthCheck) {
+	*out = *in
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new HealthCheck.
+func (in *HealthCheck) DeepCopy() *HealthCheck {
+	if in == nil {
+		return nil
+	}
+	out := new(HealthCheck)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *ImportClusterYamlInput) DeepCopyInto(out *ImportClusterYamlInput) {
 	*out = *in
 	return
@@ -1292,6 +1663,162 @@ func (in *ImportedConfig) DeepCopy() *ImportedConfig {
 		return nil
 	}
 	out := new(ImportedConfig)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *IngressConfig) DeepCopyInto(out *IngressConfig) {
+	*out = *in
+	if in.Options != nil {
+		in, out := &in.Options, &out.Options
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	if in.NodeSelector != nil {
+		in, out := &in.NodeSelector, &out.NodeSelector
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	if in.ExtraArgs != nil {
+		in, out := &in.ExtraArgs, &out.ExtraArgs
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new IngressConfig.
+func (in *IngressConfig) DeepCopy() *IngressConfig {
+	if in == nil {
+		return nil
+	}
+	out := new(IngressConfig)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *KubeAPIService) DeepCopyInto(out *KubeAPIService) {
+	*out = *in
+	in.BaseService.DeepCopyInto(&out.BaseService)
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new KubeAPIService.
+func (in *KubeAPIService) DeepCopy() *KubeAPIService {
+	if in == nil {
+		return nil
+	}
+	out := new(KubeAPIService)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *KubeControllerService) DeepCopyInto(out *KubeControllerService) {
+	*out = *in
+	in.BaseService.DeepCopyInto(&out.BaseService)
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new KubeControllerService.
+func (in *KubeControllerService) DeepCopy() *KubeControllerService {
+	if in == nil {
+		return nil
+	}
+	out := new(KubeControllerService)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *KubeletService) DeepCopyInto(out *KubeletService) {
+	*out = *in
+	in.BaseService.DeepCopyInto(&out.BaseService)
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new KubeletService.
+func (in *KubeletService) DeepCopy() *KubeletService {
+	if in == nil {
+		return nil
+	}
+	out := new(KubeletService)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *KubeproxyService) DeepCopyInto(out *KubeproxyService) {
+	*out = *in
+	in.BaseService.DeepCopyInto(&out.BaseService)
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new KubeproxyService.
+func (in *KubeproxyService) DeepCopy() *KubeproxyService {
+	if in == nil {
+		return nil
+	}
+	out := new(KubeproxyService)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *KubernetesServicesOptions) DeepCopyInto(out *KubernetesServicesOptions) {
+	*out = *in
+	if in.KubeAPI != nil {
+		in, out := &in.KubeAPI, &out.KubeAPI
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	if in.Kubelet != nil {
+		in, out := &in.Kubelet, &out.Kubelet
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	if in.Kubeproxy != nil {
+		in, out := &in.Kubeproxy, &out.Kubeproxy
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	if in.KubeController != nil {
+		in, out := &in.KubeController, &out.KubeController
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	if in.Scheduler != nil {
+		in, out := &in.Scheduler, &out.Scheduler
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new KubernetesServicesOptions.
+func (in *KubernetesServicesOptions) DeepCopy() *KubernetesServicesOptions {
+	if in == nil {
+		return nil
+	}
+	out := new(KubernetesServicesOptions)
 	in.DeepCopyInto(out)
 	return out
 }
@@ -1436,6 +1963,72 @@ func (in *LocalConfig) DeepCopyObject() runtime.Object {
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *NetworkConfig) DeepCopyInto(out *NetworkConfig) {
+	*out = *in
+	if in.Options != nil {
+		in, out := &in.Options, &out.Options
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	if in.CalicoNetworkProvider != nil {
+		in, out := &in.CalicoNetworkProvider, &out.CalicoNetworkProvider
+		if *in == nil {
+			*out = nil
+		} else {
+			*out = new(CalicoNetworkProvider)
+			**out = **in
+		}
+	}
+	if in.CanalNetworkProvider != nil {
+		in, out := &in.CanalNetworkProvider, &out.CanalNetworkProvider
+		if *in == nil {
+			*out = nil
+		} else {
+			*out = new(CanalNetworkProvider)
+			**out = **in
+		}
+	}
+	if in.FlannelNetworkProvider != nil {
+		in, out := &in.FlannelNetworkProvider, &out.FlannelNetworkProvider
+		if *in == nil {
+			*out = nil
+		} else {
+			*out = new(FlannelNetworkProvider)
+			**out = **in
+		}
+	}
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new NetworkConfig.
+func (in *NetworkConfig) DeepCopy() *NetworkConfig {
+	if in == nil {
+		return nil
+	}
+	out := new(NetworkConfig)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *PortCheck) DeepCopyInto(out *PortCheck) {
+	*out = *in
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new PortCheck.
+func (in *PortCheck) DeepCopy() *PortCheck {
+	if in == nil {
+		return nil
+	}
+	out := new(PortCheck)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *Preference) DeepCopyInto(out *Preference) {
 	*out = *in
 	out.Namespaced = in.Namespaced
@@ -1563,6 +2156,260 @@ func (in *PrincipalList) DeepCopyObject() runtime.Object {
 	} else {
 		return nil
 	}
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *PrivateRegistry) DeepCopyInto(out *PrivateRegistry) {
+	*out = *in
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new PrivateRegistry.
+func (in *PrivateRegistry) DeepCopy() *PrivateRegistry {
+	if in == nil {
+		return nil
+	}
+	out := new(PrivateRegistry)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *Process) DeepCopyInto(out *Process) {
+	*out = *in
+	if in.Command != nil {
+		in, out := &in.Command, &out.Command
+		*out = make([]string, len(*in))
+		copy(*out, *in)
+	}
+	if in.Args != nil {
+		in, out := &in.Args, &out.Args
+		*out = make([]string, len(*in))
+		copy(*out, *in)
+	}
+	if in.Env != nil {
+		in, out := &in.Env, &out.Env
+		*out = make([]string, len(*in))
+		copy(*out, *in)
+	}
+	if in.VolumesFrom != nil {
+		in, out := &in.VolumesFrom, &out.VolumesFrom
+		*out = make([]string, len(*in))
+		copy(*out, *in)
+	}
+	if in.Binds != nil {
+		in, out := &in.Binds, &out.Binds
+		*out = make([]string, len(*in))
+		copy(*out, *in)
+	}
+	out.HealthCheck = in.HealthCheck
+	if in.Labels != nil {
+		in, out := &in.Labels, &out.Labels
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new Process.
+func (in *Process) DeepCopy() *Process {
+	if in == nil {
+		return nil
+	}
+	out := new(Process)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *RKEConfigNode) DeepCopyInto(out *RKEConfigNode) {
+	*out = *in
+	if in.Role != nil {
+		in, out := &in.Role, &out.Role
+		*out = make([]string, len(*in))
+		copy(*out, *in)
+	}
+	if in.Labels != nil {
+		in, out := &in.Labels, &out.Labels
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new RKEConfigNode.
+func (in *RKEConfigNode) DeepCopy() *RKEConfigNode {
+	if in == nil {
+		return nil
+	}
+	out := new(RKEConfigNode)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *RKEConfigNodePlan) DeepCopyInto(out *RKEConfigNodePlan) {
+	*out = *in
+	if in.Processes != nil {
+		in, out := &in.Processes, &out.Processes
+		*out = make(map[string]Process, len(*in))
+		for key, val := range *in {
+			(*out)[key] = *val.DeepCopy()
+		}
+	}
+	if in.PortChecks != nil {
+		in, out := &in.PortChecks, &out.PortChecks
+		*out = make([]PortCheck, len(*in))
+		copy(*out, *in)
+	}
+	if in.Annotations != nil {
+		in, out := &in.Annotations, &out.Annotations
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	if in.Labels != nil {
+		in, out := &in.Labels, &out.Labels
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new RKEConfigNodePlan.
+func (in *RKEConfigNodePlan) DeepCopy() *RKEConfigNodePlan {
+	if in == nil {
+		return nil
+	}
+	out := new(RKEConfigNodePlan)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *RKEConfigServices) DeepCopyInto(out *RKEConfigServices) {
+	*out = *in
+	in.Etcd.DeepCopyInto(&out.Etcd)
+	in.KubeAPI.DeepCopyInto(&out.KubeAPI)
+	in.KubeController.DeepCopyInto(&out.KubeController)
+	in.Scheduler.DeepCopyInto(&out.Scheduler)
+	in.Kubelet.DeepCopyInto(&out.Kubelet)
+	in.Kubeproxy.DeepCopyInto(&out.Kubeproxy)
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new RKEConfigServices.
+func (in *RKEConfigServices) DeepCopy() *RKEConfigServices {
+	if in == nil {
+		return nil
+	}
+	out := new(RKEConfigServices)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *RKEPlan) DeepCopyInto(out *RKEPlan) {
+	*out = *in
+	if in.Nodes != nil {
+		in, out := &in.Nodes, &out.Nodes
+		*out = make([]RKEConfigNodePlan, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new RKEPlan.
+func (in *RKEPlan) DeepCopy() *RKEPlan {
+	if in == nil {
+		return nil
+	}
+	out := new(RKEPlan)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *RKESystemImages) DeepCopyInto(out *RKESystemImages) {
+	*out = *in
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new RKESystemImages.
+func (in *RKESystemImages) DeepCopy() *RKESystemImages {
+	if in == nil {
+		return nil
+	}
+	out := new(RKESystemImages)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *RancherKubernetesEngineConfig) DeepCopyInto(out *RancherKubernetesEngineConfig) {
+	*out = *in
+	if in.Nodes != nil {
+		in, out := &in.Nodes, &out.Nodes
+		*out = make([]RKEConfigNode, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	in.Services.DeepCopyInto(&out.Services)
+	in.Network.DeepCopyInto(&out.Network)
+	in.Authentication.DeepCopyInto(&out.Authentication)
+	if in.AddonsInclude != nil {
+		in, out := &in.AddonsInclude, &out.AddonsInclude
+		*out = make([]string, len(*in))
+		copy(*out, *in)
+	}
+	out.SystemImages = in.SystemImages
+	in.Authorization.DeepCopyInto(&out.Authorization)
+	if in.PrivateRegistries != nil {
+		in, out := &in.PrivateRegistries, &out.PrivateRegistries
+		*out = make([]PrivateRegistry, len(*in))
+		copy(*out, *in)
+	}
+	in.Ingress.DeepCopyInto(&out.Ingress)
+	in.CloudProvider.DeepCopyInto(&out.CloudProvider)
+	out.BastionHost = in.BastionHost
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new RancherKubernetesEngineConfig.
+func (in *RancherKubernetesEngineConfig) DeepCopy() *RancherKubernetesEngineConfig {
+	if in == nil {
+		return nil
+	}
+	out := new(RancherKubernetesEngineConfig)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SchedulerService) DeepCopyInto(out *SchedulerService) {
+	*out = *in
+	in.BaseService.DeepCopyInto(&out.BaseService)
+	return
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SchedulerService.
+func (in *SchedulerService) DeepCopy() *SchedulerService {
+	if in == nil {
+		return nil
+	}
+	out := new(SchedulerService)
+	in.DeepCopyInto(out)
+	return out
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
