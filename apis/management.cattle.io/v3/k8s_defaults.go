@@ -6,6 +6,27 @@ const (
 	DefaultK8s = "v1.10.3-rancher2-1"
 )
 
+type AlertSystemImages struct {
+	AlertManager string
+	AlertManagerHelper string
+}
+
+type PipelineSystemImages struct {
+	Jenkins string
+	JenkinsJnlp string
+	AlpineGit string
+	PluginsDocker string
+}
+
+type LoggingSystemImages struct {
+	Fluentd string
+	FluentdHelper string
+	LogAggregatorFlexVolumeDriver string
+	Elaticsearch string
+	Kibana string
+	Busybox string
+}
+
 var (
 	m = image.Mirror
 
@@ -274,6 +295,32 @@ var (
 				"tls-cipher-suites": "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305",
 				"feature-gates":     "MountPropagation=false",
 			},
+		},
+	}
+
+	// ToolsSystemImages default images for alert, pipeline, logging
+	ToolsSystemImages = struct {
+		AlertSystemImages    AlertSystemImages
+		PipelineSystemImages PipelineSystemImages
+		LoggingSystemImages  LoggingSystemImages
+	}{
+		AlertSystemImages: AlertSystemImages{
+			AlertManager:       m("prom/alertmanager:v0.11.0"),
+			AlertManagerHelper: m("rancher/alertmanager-helper:v0.0.2"),
+		},
+		PipelineSystemImages: PipelineSystemImages{
+			Jenkins:       m("jenkins/jenkins:2.107-slim"),
+			JenkinsJnlp:   m("jenkins/jnlp-slave:3.10-1-alpine"),
+			AlpineGit:     m("alpine/git:1.0.4"),
+			PluginsDocker: m("plugins/docker:17.12"),
+		},
+		LoggingSystemImages: LoggingSystemImages{
+			Fluentd:                       m("rancher/fluentd:v0.1.7"),
+			FluentdHelper:                 m("rancher/fluentd-helper:v0.1.2"),
+			LogAggregatorFlexVolumeDriver: m("rancher/log-aggregator:v0.1.3"),
+			Elaticsearch:                  m("quay.io/pires/docker-elasticsearch-kubernetes:5.6.2"),
+			Kibana:                        m("kibana:5.6.4"),
+			Busybox:                       m("busybox"),
 		},
 	}
 )
