@@ -25,7 +25,8 @@ func businessTypes(schema *types.Schemas) *types.Schemas {
 		AddMapperForType(&Version, v3.Business{},
 			m.DisplayName{}).
 		MustImport(&Version, v3.Business{}).
-		MustImportAndCustomize(&Version, v3.BusinessQuotaCheck{}, func(schema *types.Schema) {
+		MustImport(&Version, v3.BusinessQuotaCheck{}).
+		MustImportAndCustomize(&Version, v3.Business{}, func(schema *types.Schema) {
 			schema.ResourceActions = map[string]types.Action{
 				"checkout": {
 					Input: "businessQuotaCheck",
