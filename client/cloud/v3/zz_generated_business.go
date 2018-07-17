@@ -56,7 +56,7 @@ type BusinessOperations interface {
 	ByID(id string) (*Business, error)
 	Delete(container *Business) error
 
-	ActionCheckout(resource *Business, input *BusinessQuotaCheck) error
+	ActionCheckout(resource *Business, input *BusinessQuotaCheck) (*BusinessQuotaCheckOutput, error)
 }
 
 func newBusinessClient(apiClient *Client) *BusinessClient {
@@ -104,7 +104,8 @@ func (c *BusinessClient) Delete(container *Business) error {
 	return c.apiClient.Ops.DoResourceDelete(BusinessType, &container.Resource)
 }
 
-func (c *BusinessClient) ActionCheckout(resource *Business, input *BusinessQuotaCheck) error {
-	err := c.apiClient.Ops.DoAction(BusinessType, "checkout", &resource.Resource, input, nil)
-	return err
+func (c *BusinessClient) ActionCheckout(resource *Business, input *BusinessQuotaCheck) (*BusinessQuotaCheckOutput, error) {
+	resp := &BusinessQuotaCheckOutput{}
+	err := c.apiClient.Ops.DoAction(BusinessType, "checkout", &resource.Resource, input, resp)
+	return resp, err
 }

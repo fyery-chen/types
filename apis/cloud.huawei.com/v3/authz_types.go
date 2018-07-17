@@ -28,7 +28,7 @@ type BusinessGlobalRoleBinding struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
 	UserName       string `json:"userName,omitempty" norman:"required,type=reference[user]"`
-	GlobalRoleName string `json:"globalRoleName,omitempty" norman:"required,type=reference[globalRole]"`
+	GlobalRoleName string `json:"globalRoleName,omitempty" norman:"required,type=reference[businessGlobalRole]"`
 }
 
 type BusinessRoleTemplate struct {

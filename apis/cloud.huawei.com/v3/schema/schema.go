@@ -30,7 +30,7 @@ func businessTypes(schema *types.Schemas) *types.Schemas {
 		MustImportAndCustomize(&Version, v3.Business{}, func(schema *types.Schema) {
 			schema.ResourceActions = map[string]types.Action{
 				"checkout": {
-					Input: "businessQuotaCheck",
+					Input:  "businessQuotaCheck",
 					Output: "businessQuotaCheckOutput",
 				},
 			}
