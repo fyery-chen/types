@@ -1,13 +1,10 @@
 package v3
 
 import (
-	"github.com/rancher/norman/types"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 type Business struct {
-	types.Namespaced
-
 	metav1.TypeMeta `json:",inline"`
 	// Standard object’s metadata. More info:
 	// https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#metadata
@@ -24,10 +21,9 @@ type BusinessStatus struct {
 }
 
 type BusinessQuotaSpec struct {
-	DisplayName  string `json:"displayName,omitempty" norman:"required"`
-	BusinessName string `json:"businessName,omitempty" norman:"type=reference[business]"`
-	Description  string `json:"description,omitempty"`
-	NodeCount    int    `json:"nodeCount,omitempty"`
+	DisplayName string `json:"displayName,omitempty" norman:"required"`
+	Description string `json:"description,omitempty"`
+	NodeCount   int    `json:"nodeCount,omitempty"`
 }
 
 type BusinessQuotaCheck struct {

@@ -7,13 +7,11 @@ import (
 const (
 	BusinessType                      = "business"
 	BusinessFieldAnnotations          = "annotations"
-	BusinessFieldBusinessId           = "businessId"
 	BusinessFieldCreated              = "created"
 	BusinessFieldCreatorID            = "creatorId"
 	BusinessFieldDescription          = "description"
 	BusinessFieldLabels               = "labels"
 	BusinessFieldName                 = "name"
-	BusinessFieldNamespaceId          = "namespaceId"
 	BusinessFieldNodeCount            = "nodeCount"
 	BusinessFieldOwnerReferences      = "ownerReferences"
 	BusinessFieldRemoved              = "removed"
@@ -27,13 +25,11 @@ const (
 type Business struct {
 	types.Resource
 	Annotations          map[string]string `json:"annotations,omitempty" yaml:"annotations,omitempty"`
-	BusinessId           string            `json:"businessId,omitempty" yaml:"businessId,omitempty"`
 	Created              string            `json:"created,omitempty" yaml:"created,omitempty"`
 	CreatorID            string            `json:"creatorId,omitempty" yaml:"creatorId,omitempty"`
 	Description          string            `json:"description,omitempty" yaml:"description,omitempty"`
 	Labels               map[string]string `json:"labels,omitempty" yaml:"labels,omitempty"`
 	Name                 string            `json:"name,omitempty" yaml:"name,omitempty"`
-	NamespaceId          string            `json:"namespaceId,omitempty" yaml:"namespaceId,omitempty"`
 	NodeCount            int64             `json:"nodeCount,omitempty" yaml:"nodeCount,omitempty"`
 	OwnerReferences      []OwnerReference  `json:"ownerReferences,omitempty" yaml:"ownerReferences,omitempty"`
 	Removed              string            `json:"removed,omitempty" yaml:"removed,omitempty"`
@@ -59,6 +55,8 @@ type BusinessOperations interface {
 	Update(existing *Business, updates interface{}) (*Business, error)
 	ByID(id string) (*Business, error)
 	Delete(container *Business) error
+
+	ActionCheckout(resource *Business, input *BusinessQuotaCheck) error
 }
 
 func newBusinessClient(apiClient *Client) *BusinessClient {
@@ -104,4 +102,9 @@ func (c *BusinessClient) ByID(id string) (*Business, error) {
 
 func (c *BusinessClient) Delete(container *Business) error {
 	return c.apiClient.Ops.DoResourceDelete(BusinessType, &container.Resource)
+}
+
+func (c *BusinessClient) ActionCheckout(resource *Business, input *BusinessQuotaCheck) error {
+	err := c.apiClient.Ops.DoAction(BusinessType, "checkout", &resource.Resource, input, nil)
+	return err
 }

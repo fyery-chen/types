@@ -23,9 +23,8 @@ var (
 	BusinessResource = metav1.APIResource{
 		Name:         "businesses",
 		SingularName: "business",
-		Namespaced:   true,
-
-		Kind: BusinessGroupVersionKind.Kind,
+		Namespaced:   false,
+		Kind:         BusinessGroupVersionKind.Kind,
 	}
 )
 

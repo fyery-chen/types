@@ -7,24 +7,24 @@ const (
 )
 
 type AlertSystemImages struct {
-	AlertManager string
+	AlertManager       string
 	AlertManagerHelper string
 }
 
 type PipelineSystemImages struct {
-	Jenkins string
-	JenkinsJnlp string
-	AlpineGit string
+	Jenkins       string
+	JenkinsJnlp   string
+	AlpineGit     string
 	PluginsDocker string
 }
 
 type LoggingSystemImages struct {
-	Fluentd string
-	FluentdHelper string
+	Fluentd                       string
+	FluentdHelper                 string
 	LogAggregatorFlexVolumeDriver string
-	Elaticsearch string
-	Kibana string
-	Busybox string
+	Elaticsearch                  string
+	Kibana                        string
+	Busybox                       string
 }
 
 var (
