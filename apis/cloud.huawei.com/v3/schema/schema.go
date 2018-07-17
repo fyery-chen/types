@@ -26,10 +26,12 @@ func businessTypes(schema *types.Schemas) *types.Schemas {
 			m.DisplayName{}).
 		MustImport(&Version, v3.Business{}).
 		MustImport(&Version, v3.BusinessQuotaCheck{}).
+		MustImport(&Version, v3.BusinessQuotaCheckOutput{}).
 		MustImportAndCustomize(&Version, v3.Business{}, func(schema *types.Schema) {
 			schema.ResourceActions = map[string]types.Action{
 				"checkout": {
 					Input: "businessQuotaCheck",
+					Output: "businessQuotaCheckOutput",
 				},
 			}
 		})

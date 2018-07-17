@@ -30,3 +30,7 @@ type BusinessQuotaCheck struct {
 	BusinessName string `json:"businessName,omitempty" norman:"type=string,required"`
 	NodeCount    int    `json:"nodeCount,omitempty" norman:"required"`
 }
+
+type BusinessQuotaCheckOutput struct {
+	Message string `json:"message,omitempty"`
+}
