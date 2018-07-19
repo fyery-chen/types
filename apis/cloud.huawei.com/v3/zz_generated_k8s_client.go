@@ -15,6 +15,7 @@ type Interface interface {
 	RESTClient() rest.Interface
 	controller.Starter
 
+	HuaweiCloudAccountsGetter
 	BusinessGlobalRolesGetter
 	BusinessGlobalRoleBindingsGetter
 	BusinessRoleTemplatesGetter
@@ -28,6 +29,7 @@ type Client struct {
 	restClient rest.Interface
 	starters   []controller.Starter
 
+	huaweiCloudAccountControllers          map[string]HuaweiCloudAccountController
 	businessGlobalRoleControllers          map[string]BusinessGlobalRoleController
 	businessGlobalRoleBindingControllers   map[string]BusinessGlobalRoleBindingController
 	businessRoleTemplateControllers        map[string]BusinessRoleTemplateController
@@ -50,6 +52,7 @@ func NewForConfig(config rest.Config) (Interface, error) {
 	return &Client{
 		restClient: restClient,
 
+		huaweiCloudAccountControllers:          map[string]HuaweiCloudAccountController{},
 		businessGlobalRoleControllers:          map[string]BusinessGlobalRoleController{},
 		businessGlobalRoleBindingControllers:   map[string]BusinessGlobalRoleBindingController{},
 		businessRoleTemplateControllers:        map[string]BusinessRoleTemplateController{},
@@ -69,6 +72,19 @@ func (c *Client) Sync(ctx context.Context) error {
 
 func (c *Client) Start(ctx context.Context, threadiness int) error {
 	return controller.Start(ctx, threadiness, c.starters...)
+}
+
+type HuaweiCloudAccountsGetter interface {
+	HuaweiCloudAccounts(namespace string) HuaweiCloudAccountInterface
+}
+
+func (c *Client) HuaweiCloudAccounts(namespace string) HuaweiCloudAccountInterface {
+	objectClient := objectclient.NewObjectClient(namespace, c.restClient, &HuaweiCloudAccountResource, HuaweiCloudAccountGroupVersionKind, huaweiCloudAccountFactory{})
+	return &huaweiCloudAccountClient{
+		ns:           namespace,
+		client:       c,
+		objectClient: objectClient,
+	}
 }
 
 type BusinessGlobalRolesGetter interface {

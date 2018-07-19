@@ -7,6 +7,7 @@ import (
 type Client struct {
 	clientbase.APIBaseClient
 
+	HuaweiCloudAccount          HuaweiCloudAccountOperations
 	BusinessGlobalRole          BusinessGlobalRoleOperations
 	BusinessGlobalRoleBinding   BusinessGlobalRoleBindingOperations
 	BusinessRoleTemplate        BusinessRoleTemplateOperations
@@ -25,6 +26,7 @@ func NewClient(opts *clientbase.ClientOpts) (*Client, error) {
 		APIBaseClient: baseClient,
 	}
 
+	client.HuaweiCloudAccount = newHuaweiCloudAccountClient(client)
 	client.BusinessGlobalRole = newBusinessGlobalRoleClient(client)
 	client.BusinessGlobalRoleBinding = newBusinessGlobalRoleBindingClient(client)
 	client.BusinessRoleTemplate = newBusinessRoleTemplateClient(client)

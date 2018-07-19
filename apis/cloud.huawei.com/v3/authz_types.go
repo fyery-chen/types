@@ -13,6 +13,21 @@ var (
 	DefaultNetworkPolicyCreated condition.Cond = "DefaultNetworkPolicyCreated"
 )
 
+type HuaweiCloudAccountSpec struct {
+	DisplayName string `json:"displayName,omitempty" norman:"required"`
+	AccessKey   string `json:"accessKey,omitempty"`
+	SecretKey   string `json:"secretKey,omitempty"`
+	UserName    string `json:"userName,omitempty" norman:"required,type=reference[user]"`
+}
+
+type HuaweiCloudAccount struct {
+	types.Namespaced
+
+	metav1.TypeMeta   `json:",inline"`
+	metav1.ObjectMeta `json:"metadata,omitempty"`
+	Spec              HuaweiCloudAccountSpec `json:"spec,omitempty"`
+}
+
 type BusinessGlobalRole struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

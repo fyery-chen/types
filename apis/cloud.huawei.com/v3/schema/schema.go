@@ -44,8 +44,10 @@ func schemaTypes(schemas *types.Schemas) *types.Schemas {
 
 func authzTypes(schemas *types.Schemas) *types.Schemas {
 	return schemas.
+		AddMapperForType(&Version, v3.HuaweiCloudAccount{}, m.DisplayName{}).
 		AddMapperForType(&Version, v3.BusinessGlobalRole{}, m.DisplayName{}).
 		AddMapperForType(&Version, v3.BusinessRoleTemplate{}, m.DisplayName{}).
+		MustImport(&Version, v3.HuaweiCloudAccount{}).
 		MustImport(&Version, v3.BusinessGlobalRole{}).
 		MustImport(&Version, v3.BusinessGlobalRoleBinding{}).
 		MustImport(&Version, v3.BusinessRoleTemplate{}).

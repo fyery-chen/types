@@ -13,7 +13,7 @@ var (
 	Version = types.APIVersion{
 		Version: "v3",
 		Group:   "management.cattle.io",
-		Path:    "/v1",
+		Path:    "/v3",
 	}
 
 	Schemas = factory.Schemas(&Version).
