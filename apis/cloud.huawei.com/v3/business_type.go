@@ -34,3 +34,38 @@ type BusinessQuotaCheck struct {
 type BusinessQuotaCheckOutput struct {
 	Message string `json:"message,omitempty"`
 }
+
+type SubnetInfo struct {
+	SubnetName string `json:"subnetName,omitempty"`
+	SubnetId   string `json:"subnetId,omitempty"`
+}
+
+type VpcInfo struct {
+	VpcName    string       `json:"vpcName,omitempty"`
+	VpcId      string       `json:"vpcId,omitempty"`
+	SubnetInfo []SubnetInfo `json:"subnetInfo,omitempty"`
+}
+
+type NodeFlavor struct {
+	Name  string `json:"name,omitempty"`
+	Vcpus string `json:"vcpus,omitempty"`
+	Ram   int    `json:"ram,omitempty"`
+}
+
+type AvailableZone struct {
+	ZoneName  string `json:"zoneName,omitempty"`
+	ZoneState bool   `json:"zoneState,omitempty"`
+}
+
+type HuaweiCloudApiInformationInput struct {
+	ProjectId string `json:"projectId,omitempty"`
+	Zone      string `json:"zone,omitempty"`
+}
+
+type HuaweiCloudApiInformationOutput struct {
+	VpcInfo       []VpcInfo       `json:"vpcInfo,omitempty"`
+	SshKeyName    []string        `json:"sshKeyName,omitempty"`
+	NodeFlavor    []NodeFlavor    `json:"nodeFlavor,omitempty"`
+	AvailableZone []AvailableZone `json:"availableZone,omitempty"`
+	Message       string          `json:"message,omitempty"`
+}
