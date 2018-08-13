@@ -195,6 +195,10 @@ type HuaweiCloudContainerEngineCongfig struct {
 	AvailableZone string `json:"availableZone,omitempty" norman:"required"`
 	//The name of ssh key-pair
 	SshKey string `json:"sshKey,omitempty" norman:"required"`
+	//Username to login the host
+	UserName string `json:"userName,omitempty"`
+	//Password to login the host
+	Password string `json:"password,omitempty"`
 	//The system disk volume size
 	RootVolumeSize int64 `json:"rootVolumeSize,omitempty"`
 	//The system disk type, SATA, SAS, SSD

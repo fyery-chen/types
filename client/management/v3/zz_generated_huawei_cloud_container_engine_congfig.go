@@ -32,12 +32,14 @@ const (
 	HuaweiCloudContainerEngineCongfigFieldNodeFlavor            = "nodeFlavor"
 	HuaweiCloudContainerEngineCongfigFieldNodeLabels            = "nodeLabels"
 	HuaweiCloudContainerEngineCongfigFieldNodeOperationSystem   = "nodeOperationSystem"
+	HuaweiCloudContainerEngineCongfigFieldPassword              = "password"
 	HuaweiCloudContainerEngineCongfigFieldProjectID             = "projectId"
 	HuaweiCloudContainerEngineCongfigFieldRootVolumeSize        = "rootVolumeSize"
 	HuaweiCloudContainerEngineCongfigFieldRootVolumeType        = "rootVolumeType"
 	HuaweiCloudContainerEngineCongfigFieldSecretKey             = "secretKey"
 	HuaweiCloudContainerEngineCongfigFieldSshKey                = "sshKey"
 	HuaweiCloudContainerEngineCongfigFieldSubnetId              = "subnetId"
+	HuaweiCloudContainerEngineCongfigFieldUserName              = "userName"
 	HuaweiCloudContainerEngineCongfigFieldVpcId                 = "vpcId"
 	HuaweiCloudContainerEngineCongfigFieldZone                  = "zone"
 )
@@ -73,12 +75,14 @@ type HuaweiCloudContainerEngineCongfig struct {
 	NodeFlavor            string            `json:"nodeFlavor,omitempty" yaml:"nodeFlavor,omitempty"`
 	NodeLabels            map[string]string `json:"nodeLabels,omitempty" yaml:"nodeLabels,omitempty"`
 	NodeOperationSystem   string            `json:"nodeOperationSystem,omitempty" yaml:"nodeOperationSystem,omitempty"`
+	Password              string            `json:"password,omitempty" yaml:"password,omitempty"`
 	ProjectID             string            `json:"projectId,omitempty" yaml:"projectId,omitempty"`
 	RootVolumeSize        int64             `json:"rootVolumeSize,omitempty" yaml:"rootVolumeSize,omitempty"`
 	RootVolumeType        string            `json:"rootVolumeType,omitempty" yaml:"rootVolumeType,omitempty"`
 	SecretKey             string            `json:"secretKey,omitempty" yaml:"secretKey,omitempty"`
 	SshKey                string            `json:"sshKey,omitempty" yaml:"sshKey,omitempty"`
 	SubnetId              string            `json:"subnetId,omitempty" yaml:"subnetId,omitempty"`
+	UserName              string            `json:"userName,omitempty" yaml:"userName,omitempty"`
 	VpcId                 string            `json:"vpcId,omitempty" yaml:"vpcId,omitempty"`
 	Zone                  string            `json:"zone,omitempty" yaml:"zone,omitempty"`
 }
