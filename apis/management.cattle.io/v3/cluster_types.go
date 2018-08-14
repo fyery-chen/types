@@ -194,7 +194,7 @@ type HuaweiCloudContainerEngineCongfig struct {
 	//The available zone which the nodes are in
 	AvailableZone string `json:"availableZone,omitempty" norman:"required"`
 	//The name of ssh key-pair
-	SshKey string `json:"sshKey,omitempty" norman:"required"`
+	SshKey string `json:"sshKey,omitempty"`
 	//Username to login the host
 	UserName string `json:"userName,omitempty"`
 	//Password to login the host
