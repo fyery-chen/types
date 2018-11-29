@@ -2184,6 +2184,18 @@ func (in *GoogleKubernetesEngineConfig) DeepCopyInto(out *GoogleKubernetesEngine
 		*out = new(bool)
 		**out = **in
 	}
+	if in.ResourceLabels != nil {
+		in, out := &in.ResourceLabels, &out.ResourceLabels
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	if in.MasterAuthorizedNetworkCidrBlocks != nil {
+		in, out := &in.MasterAuthorizedNetworkCidrBlocks, &out.MasterAuthorizedNetworkCidrBlocks
+		*out = make([]string, len(*in))
+		copy(*out, *in)
+	}
 	return
 }
 

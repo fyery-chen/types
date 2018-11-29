@@ -171,6 +171,46 @@ type GoogleKubernetesEngineConfig struct {
 	EnableStackdriverLogging    *bool  `json:"enableStackdriverLogging,omitempty" norman:"default=true"`
 	EnableStackdriverMonitoring *bool  `json:"enableStackdriverMonitoring,omitempty" norman:"default=true"`
 	MaintenanceWindow           string `json:"maintenanceWindow"`
+	// The map of Kubernetes labels to be applied to each cluster
+	ResourceLabels map[string]string `json:"resourceLabels,omitempty"`
+	// Enable nodepool autoscaling
+	EnableNodepoolAutoscaling bool `json:"enableNodepoolAutoscaling,omitempty" norman:"default=false"`
+	// Minimum number of nodes in the Nodepool
+	MinNodeCount int64 `json:"minNodeCount,omitempty"`
+	// Maximum number of nodes in the Nodepool
+	MaxNodeCount int64 `json:"maxNodeCount,omitempty"`
+	// The username to use for HTTP basic authentication to the master endpoint
+	MasterAuthUsername string `json:"masterAuthUsername,omitempty"`
+	// The password to use for HTTP basic authentication to the master endpoint
+	MasterAuthPassword string `json:"masterAuthPassword,omitempty" norman:"type=password"`
+	// Issue a client certificate
+	IssueClientCertificate bool `json:"issueClientCertificate,omitempty" norman:"default=true"`
+	// Whether or not master authorized network is enabled
+	EnableMasterAuthorizedNetwork bool `json:"enableMasterAuthorizedNetwork,omitempty" norman:"default=false"`
+	// Define up to 10 external networks that could access Kubernetes master through HTTPS
+	MasterAuthorizedNetworkCidrBlocks []string `json:"masterAuthorizedNetworkCidrBlocks,omitempty"`
+	// Whether the master's internal IP address is used as the cluster endpoint
+	EnablePrivateEndpoint bool `json:"enablePrivateEndpoint,omitempty" norman:"default=false"`
+	// Whether nodes have internal IP address only
+	EnablePrivateNodes bool `json:"enablePrivateNodes,omitempty" norman:"default=false"`
+	// The IP range in CIDR notation to use for the hosted master network
+	MasterIPV4CidrBlock string `json:"masterIpv4CidrBlock,omitempty"`
+	// Whether alias IPs will be used for pod IPs in the cluster
+	UseIPAliases bool `json:"useIpAliases,omitempty" norman:"default=false"`
+	// Whether a new subnetwork will be created automatically for the cluster
+	IPPolicyCreateSubnetwork bool `json:"ipPolicyCreateSubnetwork,omitempty" norman:"default=false"`
+	// A custom subnetwork name to be used if createSubnetwork is true
+	IPPolicySubnetworkName string `json:"ipPolicySubnetworkName,omitempty"`
+	// The name of the secondary range to be used for the cluster CIDR block
+	IPPolicyClusterSecondaryRangeName string `json:"ipPolicyClusterSecondaryRangeName,omitempty"`
+	// The name of the secondary range to be used for the services CIDR block
+	IPPolicyServicesSecondaryRangeName string `json:"ipPolicyServicesSecondaryRangeName,omitempty"`
+	// The IP address range for the cluster pod IPs
+	IPPolicyClusterIPV4CidrBlock string `json:"ipPolicyClusterIpv4CidrBlock,omitempty"`
+	// The IP address range of the instance IPs in this cluster
+	IPPolicyNodeIPV4CidrBlock string `json:"ipPolicyNodeIpv4CidrBlock,omitempty"`
+	// The IP address range of the services IPs in this cluster
+	IPPolicyServicesIPV4CidrBlock string `json:"ipPolicyServicesIpv4CidrBlock,omitempty"`
 }
 
 type AzureKubernetesServiceConfig struct {
